@@ -6,6 +6,11 @@ class MessagesController < ApplicationController
 
     def create
         message = Message.new(message_params)
+        if message.save
+            render json: message, status: :ok
+        else
+            render json: message.errors, status: :unprocessable_entity
+        end
     end
 
     private

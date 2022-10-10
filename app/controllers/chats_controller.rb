@@ -7,9 +7,9 @@ class ChatsController < ApplicationController
     def create
         chat = Chat.create(chats_params)
         if chat.save
-            render json: {status: 'SUCCESS', message:'Saved chat', data: chat }, status: :ok
+            render json: chat, status: :ok
         else
-            render json: {status: 'ERROR', message:'Chat not saved', data: chat.errors }, status: :unprocessable_entity
+            render json: chat.errors, status: :unprocessable_entity
         end
     end
 
